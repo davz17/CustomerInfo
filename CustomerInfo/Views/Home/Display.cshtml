@@ -1,0 +1,199 @@
+﻿@model X.PagedList.IPagedList<Customer>
+@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Core
+
+<div class="w3-card-2 w3-margin w3-white" id="mainform">
+    <div class="w3-container w3-padding w3-blue-gray">
+        <div class="w3-right w3-hide-small">
+            <a href="#" class="w3-bar-item w3-button" id="addnew"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+            <a href="#" class="w3-bar-item w3-button" id="export"><i class="fa fa-upload" aria-hidden="true"></i> Export</a>
+            <a href="#" class="w3-bar-item w3-button" id="print"><i class="fa fa-print" aria-hidden="true"></i> Print</a>
+        </div>
+        <h6><b><i class="fa fa-search"></i> View Customer Data</b></h6>
+    </div>
+    <br />  
+    <form id="frmMain" name="frmMain" action="/Home/Display" method="post">
+        <div class="panel-group w3-container">
+            <div class="panel panel-collapse" id="filtertable">
+                <div class="panel-heading"><b>Filters</b></div>
+                <div class="w3-container panel-body w3-padding">
+                    <div class="w3-row-padding">
+                        <div class="w3-quarter">@Html.TextBox("searchTitle")</div>
+                        <div class="w3-quarter">@Html.TextBox("searchGivenName")</div>
+                        <div class="w3-quarter">@Html.TextBox("searchMiddleInitial")</div>
+                        <div class="w3-quarter">@Html.TextBox("searchSurname")</div>
+                    </div>
+                    <div class="w3-row-padding">
+                        <div class="w3-quarter">@Html.TextBox("searchGender")</div>
+                        <div class="w3-quarter">@Html.TextBox("searchCompany")</div>
+                        <div class="w3-quarter">@Html.TextBox("searchOccupation")</div>
+                        <div class="w3-quarter">@Html.TextBox("searchEmailAddress")</div>
+                    </div>
+                    <br />
+                    <div class="w3-row-padding">
+                        <div class="w3-quarter"><input type="submit" value="Search" class="btn btn-primary" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-container w3-padding">
+            <div>
+                <table class="w3-table-all w3-hoverable" id="timerecords">
+                    <thead>
+                        <tr class="w3-light-grey">
+                            <th><p class="word-break">@Html.ActionLink("Title", "Display", new { sortOrder = ViewBag.NameSortParm, columnName = "Title", NoOfRows = 10, searchTitle = ViewBag.SearchTitle, searchGivenName = ViewBag.SearchGivenName, searchMiddleInitial = ViewBag.SearchMiddleInitial, searchSurname = ViewBag.SearchSurname, searchGender = ViewBag.SearchGender, searchCompany = ViewBag.SearchCompany, searchOccupation = ViewBag.SearchOccupation, searchEmailAddress = ViewBag.SearchEmailAddress })</p></th>
+                            <th><p class="word-break">@Html.ActionLink("Given Name", "Display", new { sortOrder = ViewBag.NameSortParm, columnName = "Given Name", NoOfRows = 10, searchTitle = ViewBag.SearchTitle, searchGivenName = ViewBag.SearchGivenName, searchMiddleInitial = ViewBag.SearchMiddleInitial, searchSurname = ViewBag.SearchSurname, searchGender = ViewBag.SearchGender, searchCompany = ViewBag.SearchCompany, searchOccupation = ViewBag.SearchOccupation, searchEmailAddress = ViewBag.SearchEmailAddress })</p></th>
+                            <th><p class="word-break">@Html.ActionLink("Middle Initial", "Display", new { sortOrder = ViewBag.NameSortParm, columnName = "Middle Initial", NoOfRows = 10, searchTitle = ViewBag.SearchTitle, searchGivenName = ViewBag.SearchGivenName, searchMiddleInitial = ViewBag.SearchMiddleInitial, searchSurname = ViewBag.SearchSurname, searchGender = ViewBag.SearchGender, searchCompany = ViewBag.SearchCompany, searchOccupation = ViewBag.SearchOccupation, searchEmailAddress = ViewBag.SearchEmailAddress })</p></th>
+                            <th><p class="word-break">@Html.ActionLink("Surname", "Display", new { sortOrder = ViewBag.NameSortParm, columnName = "Surname", NoOfRows = 10, searchTitle = ViewBag.SearchTitle, searchGivenName = ViewBag.SearchGivenName, searchMiddleInitial = ViewBag.SearchMiddleInitial, searchSurname = ViewBag.SearchSurname, searchGender = ViewBag.SearchGender, searchCompany = ViewBag.SearchCompany, searchOccupation = ViewBag.SearchOccupation, searchEmailAddress = ViewBag.SearchEmailAddress })</p></th>
+                            <th><p class="word-break">@Html.ActionLink("Gender", "Display", new { sortOrder = ViewBag.NameSortParm, columnName = "Gender", NoOfRows = 10, searchTitle = ViewBag.SearchTitle, searchGivenName = ViewBag.SearchGivenName, searchMiddleInitial = ViewBag.SearchMiddleInitial, searchSurname = ViewBag.SearchSurname, searchGender = ViewBag.SearchGender, searchCompany = ViewBag.SearchCompany, searchOccupation = ViewBag.SearchOccupation, searchEmailAddress = ViewBag.SearchEmailAddress })</p></th>
+                            <th><p class="word-break">@Html.ActionLink("Company", "Display", new { sortOrder = ViewBag.NameSortParm, columnName = "Company", NoOfRows = 10, searchTitle = ViewBag.SearchTitle, searchGivenName = ViewBag.SearchGivenName, searchMiddleInitial = ViewBag.SearchMiddleInitial, searchSurname = ViewBag.SearchSurname, searchGender = ViewBag.SearchGender, searchCompany = ViewBag.SearchCompany, searchOccupation = ViewBag.SearchOccupation, searchEmailAddress = ViewBag.SearchEmailAddress })</p></th>
+                            <th><p class="word-break">@Html.ActionLink("Occupation", "Display", new { sortOrder = ViewBag.NameSortParm, columnName = "Occupation", NoOfRows = 10, searchTitle = ViewBag.SearchTitle, searchGivenName = ViewBag.SearchGivenName, searchMiddleInitial = ViewBag.SearchMiddleInitial, searchSurname = ViewBag.SearchSurname, searchGender = ViewBag.SearchGender, searchCompany = ViewBag.SearchCompany, searchOccupation = ViewBag.SearchOccupation, searchEmailAddress = ViewBag.SearchEmailAddress })</p></th>
+                            <th><p class="word-break">@Html.ActionLink("Email Address", "Display", new { sortOrder = ViewBag.NameSortParm, columnName = "Email Address", NoOfRows = 10, searchTitle = ViewBag.SearchTitle, searchGivenName = ViewBag.SearchGivenName, searchMiddleInitial = ViewBag.SearchMiddleInitial, searchSurname = ViewBag.SearchSurname, searchGender = ViewBag.SearchGender, searchCompany = ViewBag.SearchCompany, searchOccupation = ViewBag.SearchOccupation, searchEmailAddress = ViewBag.SearchEmailAddress })</p></th>
+                        </tr>
+                    </thead>
+                    @foreach (var customer in @Model)
+                    {
+                        <tr>
+                            <td><p class="word-break">@customer.Title</p></td>
+                            <td><p class="word-break">@customer.GivenName</p></td>
+                            <td><p class="word-break">@customer.MiddleInitial</p></td>
+                            <td><p class="word-break">@customer.Surname</p></td>
+                            <td><p class="word-break">@customer.Gender</p></td>
+                            <td><p class="word-break">@customer.Company</p></td>
+                            <td><p class="word-break">@customer.Occupation</p></td>
+                            <td><p class="word-break">@customer.EmailAddress</p></td>
+                        </tr>
+                    }
+                </table>
+                <br />
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("Display", new { page, sortOrder = ViewBag.CurrentSort, searchTitle = ViewBag.SearchTitle, searchGivenName = ViewBag.SearchGivenName, searchMiddleInitial = ViewBag.SearchMiddleInitial, searchSurname = ViewBag.SearchSurname, searchGender = ViewBag.SearchGender, searchCompany = ViewBag.SearchCompany, searchOccupation = ViewBag.SearchOccupation, searchEmailAddress = ViewBag.SearchEmailAddress, NoOfRows = 10 }))
+            </div>
+        </div>
+    </form> 
+    <form class="w3-container w3-round" id="frmadd" action="javascript:void();" >
+        <div id="frmaddnew" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width:1100px;">
+                <div class="w3-center">
+                    <header class="w3-container w3-blue-gray">
+                        <h4 id="modalEmployee_hdr">Add New</h4>
+                    </header>
+                </div>
+                <div class="w3-container w3-padding">
+                    <div id="tabs" style="border:none;">
+                        <div class="w3-row-padding" style="margin:0 -16px;">
+                            <div class="w3-quarter">
+                                <label> Title</label>
+                                <input class="w3-input w3-border" type="text" id="empform_title" required>
+                            </div>
+                            <div class="w3-quarter">
+                                <label> First Name</label>
+                                <input class="w3-input w3-border" type="text" id="empform_fname" required>
+                            </div>
+                            <div class="w3-quarter">
+                                <label> Middle Initial</label>
+                                <input class="w3-input w3-border" type="text" id="empform_mname" required>
+                            </div>
+                            <div class="w3-quarter">
+                                <label> Surname</label>
+                                <input class="w3-input w3-border" type="text" id="empform_lname" required>
+                            </div>
+                        </div><br />
+                        <div class="w3-row-padding" style="margin:0 -16px;">
+                            <div class="w3-quarter">
+                                <label> Gender</label>
+                                <input class="w3-input w3-border" type="text" id="empform_gender" required>
+                            </div>
+                            <div class="w3-quarter">
+                                <label> Company</label>
+                                <input class="w3-input w3-border" type="text" id="empform_company" required>
+                            </div>
+                            <div class="w3-quarter">
+                                <label> Occupation</label>
+                                <input class="w3-input w3-border" type="text" id="empform_occupation" required>
+                            </div>
+                            <div class="w3-quarter">
+                                <label> Email Address</label>
+                                <input class="w3-input w3-border" type="text" id="empform_emailadd" required>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                    <button id="savenew" type="submit" class="w3-button w3-red">Save</button>
+                    <button id="canceladdnew" type="button" class="w3-button w3-red w3-right">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+<script>
+    $(document).ready(function () {
+        $("#searchTitle").addClass("w3-input w3-border");
+        $("#searchTitle").attr("placeholder", "Title")
+        $("#searchGivenName").addClass("w3-input w3-border");
+        $("#searchGivenName").attr("placeholder", "Given Name")
+        $("#searchMiddleInitial").addClass("w3-input w3-border");
+        $("#searchMiddleInitial").attr("placeholder", "Middle Initial");
+        $("#searchSurname").addClass("w3-input w3-border");
+        $("#searchSurname").attr("placeholder", "Surname");
+        $("#searchGender").addClass("w3-input w3-border");
+        $("#searchGender").attr("placeholder", "Gender");
+        $("#searchCompany").addClass("w3-input w3-border");
+        $("#searchCompany").attr("placeholder", "Company");
+        $("#searchOccupation").addClass("w3-input w3-border");
+        $("#searchOccupation").attr("placeholder", "Occupation");
+        $("#searchEmailAddress").addClass("w3-input w3-border");
+        $("#searchEmailAddress").attr("placeholder", "Email Address");
+        $("#frmaddnew").css({"display":"none"});        
+
+        $("#canceladdnew").click(function () {
+            $("#frmaddnew").css({ "display": "none" });
+        });
+        $("#addnew").click(function () {
+            $("#frmaddnew").css({ "display": "block" });
+        });
+
+        $("#frmadd").submit(function () {
+            var empdata = {
+                Gender: $("#empform_gender").val(),
+                Title: $("#empform_title").val(),
+                Occupation: $("#empform_occupation").val(),
+                Company: $("#empform_company").val(),
+                GivenName: $("#empform_fname").val(),
+                MiddleInitial: $("#empform_mname").val(),
+                Surname: $("#empform_lname").val(),
+                EmailAddress: $("#empform_emailadd").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/api/customers/0",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(empdata),
+                success: function (data) {
+                    alert("Successfully added new record.");
+                    $("#frmaddnew").css({ "display": "none" });
+                    $("#frmMain").submit();
+                },
+                failure: function (data) {
+                    alert('Ajax failure:' + data.responseText);
+                },
+                error: function (data) {
+                    alert('Ajax error:' + data.responseText);
+                }
+            });
+        });
+
+        //print
+        $("#print").click(function () { 
+            var cssPrint = new String('<link rel="stylesheet" href="~/css/site.css" /><link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /><link href="~/css/w3.css" rel="stylesheet" /><link href="~/css/w3-theme-blue-grey.css" rel="stylesheet" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link href="~/css/font-awesome.min.css" rel="stylesheet" /><link href="~/css/jquery-ui.css" rel="stylesheet" /><link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">');
+            window.frames["print_frame"].document.body.innerHTML = cssPrint + document.getElementById("mainform").innerHTML;
+            window.frames["print_frame"].window.focus();
+            window.frames["print_frame"].window.print();
+        });
+    });
+
+</script>
