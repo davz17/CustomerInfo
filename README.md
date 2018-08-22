@@ -1,3 +1,2 @@
 # CustomerInfo
-ASP.Net Core MVC application for displaying customer records stored in SQLlite around 500k records implemented using PagedList. 
-With functionality to import data from CSV file implemented using Web API and JQuery. Additional functionalities such as search, add new record, export and print.
+A simple customer management web application for displaying records in pagedlist. Contains other features such as search, add new, export and print. Created using ASP.Net core mvc, SQLlite, and Entity Framework. Also allows user to import data from CSV file. Implemented using web api and JQuery. UI designed using W3.CSS, Bootstrap, and Jquery.
